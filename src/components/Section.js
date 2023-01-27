@@ -1,21 +1,21 @@
 import styled from "styled-components";
 
-function Section() {
-    return(
-        <Wrap>
-            <ItemText>
-                <h1>Model S</h1>
-                <p>Order Online for Touchless Delivery</p>
-            </ItemText>
-            <Buttons>
-                <ButtonGroup>
-                    <LeftButton>Custom Order</LeftButton>
-                    <RightButton>Existing Inventory</RightButton>
-                </ButtonGroup>
-                <DownArrow src='/down-arrow.svg'/>
-            </Buttons>
-        </Wrap>
-    )
+function Section({title, description, backgroundImage, leftBtnTex, rightBtnTxt}) {
+    return (<Wrap bgImage={backgroundImage}>
+        <ItemText>
+            <h1>{title}</h1>
+            <p>{description}</p>
+        </ItemText>
+        <Buttons>
+            <ButtonGroup>
+                <LeftButton>{leftBtnTex}</LeftButton>
+                {rightBtnTxt &&
+                    <RightButton>{rightBtnTxt}</RightButton>
+                }
+            </ButtonGroup>
+            <DownArrow src='/down-arrow.svg'/>
+        </Buttons>
+    </Wrap>)
 }
 
 export default Section;
@@ -26,7 +26,7 @@ const Wrap = styled.div`
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-image:url("/model-s.jpg");
+  background-image: ${props => `url("/${props.bgImage}")`};
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -41,10 +41,13 @@ const ItemText = styled.div`
 const ButtonGroup = styled.div`
   display: flex;
   margin-bottom: 30px;
+  @media (max-width: 756px) {
+    flex-direction: column;
+  }
 `;
 
 const LeftButton = styled.div`
-  background-color: rgba(23,26,32,0.8);
+  background-color: rgba(23, 26, 32, 0.8);
   height: 40px;
   width: 256px;
   color: white;
@@ -59,7 +62,11 @@ const LeftButton = styled.div`
   margin: 8px;
 `;
 
-const RightButton = styled(LeftButton)``;
+const RightButton = styled(LeftButton)`
+  background-color: white;
+  opacity: .65;
+  color: black;
+`;
 
 const DownArrow = styled.img`
   height: 40px;
@@ -68,5 +75,5 @@ const DownArrow = styled.img`
 `;
 
 const Buttons = styled.div`
-  
+
 `;
