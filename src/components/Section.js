@@ -1,11 +1,14 @@
 import styled from "styled-components";
+import { Fade } from "react-awesome-reveal";
 
 function Section({title, description, backgroundImage, leftBtnTex, rightBtnTxt}) {
     return (<Wrap bgImage={backgroundImage}>
-        <ItemText>
-            <h1>{title}</h1>
-            <p>{description}</p>
-        </ItemText>
+        <Fade direction="up" triggerOnce={true}>
+            <ItemText>
+                <h1>{title}</h1>
+                <p>{description}</p>
+            </ItemText>
+        </Fade>
         <Buttons>
             <ButtonGroup>
                 <LeftButton>{leftBtnTex}</LeftButton>
